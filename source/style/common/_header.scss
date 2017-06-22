@@ -1,0 +1,55 @@
+.main-price {
+    max-width: 436px;
+    max-height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:0;
+    background-image: url(../images/main-price-bg.png);
+    background-position: 0px 0px;
+    width: 436px;
+    height: 209px;
+    &__price {
+        position: absolute;
+        color: $headerTitleColor;
+        font-weight: 700;
+        font-size: 3.75rem;
+        &:after{
+        	content: ' руб'
+        }
+    }
+}
+
+.header {
+    min-height: 730px;
+    overflow: hidden;
+    background-size: cover;
+    &__content {
+        position: relative;
+        z-index: 1;
+        color: $headerTitleColor;
+        margin: 0;
+    }
+    &__img {
+        max-width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &__title,
+    &__subtitle {
+        margin: 0;
+    }
+    &__title {
+        font-size: 4rem;
+        font-weight: 700;
+        padding: 0.75em 0 0.33em 0;
+    }
+    &__subtitle {
+        font-size: 2rem;
+        font-weight: 400;
+    }
+    &__main-price {
+    	margin-left: -10px;
+    }
+}

@@ -1,0 +1,87 @@
+input[type="checkbox"],
+input[type="radio"] {
+    opacity: 0;
+    outline: none;
+    -ms-touch-action: none;
+    touch-action: none
+}
+
+label {
+    -ms-touch-action: none;
+    touch-action: none
+}
+
+input[class^="custom-check__checkbox"] + span[class^="custom-check__checkbox"] > span[data-ripple="true"]::before,
+span[data-ripple="true"]::before {
+    background-color: rgba(177, 230, 254, 0.9);
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 100%;
+    opacity: 0;
+    width: 100%
+}
+
+input[class^="custom-check__checkbox"]:checked + span[class^="custom-check__checkbox"] > span[data-ripple="true"]::before,
+input[class^="custom-check__checkbox"]:checked + span[data-ripple="true"]::before {
+    -webkit-animation: ripple .4s ease .1s 1 normal forwards;
+    animation: ripple .4s ease .1s 1 normal forwards
+}
+
+.list {
+    list-style-type: none;
+}
+
+.list__item {}
+
+.custom-check {
+    color: $priceColor;
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    height: 1.23em;
+    position: relative;
+    text-align: left;
+}
+
+.custom-check__checkbox {
+    display: block;
+    height: 16px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 16px;
+    border-radius: 2px;
+}
+
+.custom-check__text {
+    cursor: pointer;
+    display: block;
+    left: 0;
+    padding-left: 26px;
+    position: absolute;
+    text-align: left;
+    top: 0
+}
+.check-B:checked+.check-B__background{
+    background-color:  $priceDiscountColor;
+    box-shadow: none;
+}
+.check-B__checkbox{
+        border: solid 1px #ccc;
+}
+
+.check-B:checked+.check-B__background+.check-B__checkbox{
+    border-color: #fff;
+    border-radius: 0;
+    border-right: none;
+    border-top: none;
+    border-width: 2px;
+    box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.1);
+    height: 6px;
+    left: 3px;
+    top: 3px;
+    transform: rotate(-45deg);
+    width: 10px;
+}

@@ -1,0 +1,185 @@
+extends ../_template
+
+block variables
+	- var title = 'Официальный дилер Киа в Беларуси, Автопалас-М Kia Минск. Продажа новых автомобилей Киа.'
+	- var keywords = 'киа, kia,  киа Беларусь, киа Минск, официальный дилер киа, kia Беларусь, kia минск, сайт киа, дилер киа Минск, сайт Kia, Автопалас-М, kia.by, купить киа'
+	- var description = 'Атлант-М на Независимости - Официальный дилер Kia Беларусь. Продажа автомобилей Киа, сервисное и гарантийное обслуживание, официальная гарантия Kia. Описание автомобилей киа, комплектация, цена.index.pug'
+
+	- var engineFilter = ['2.0i Бензин', '1.6i Бензин' , '1.6d Дизель', '2.0d Дизель', '1.6 T-GDi Бензин']
+	- var driveFilter = ['Полный', 'Передний']
+	- var gearFilter = ['Автомат', 'Механика']
+	- var positionFilter = ['На складе', 'В пути']
+	- var buttons = ['Интересует это авто', 'Купить в рассрочку', 'Система Trade-In']
+	-
+		var cars = [
+			{
+				modelName:'Kia Sportage QLE',
+				modelImage:'templates/_ares/images/black.png',
+				modelPrice:'52 000',
+				discount: true,
+				modelDiscountPrice:'41 250',
+				bodyType:'Универсал',
+				yearOfIssue:'2017',
+				engineType:'2.0i',
+				fuelType:'Бензин',
+				gearType:'Механика',
+				driveType:'Полный',
+				bodyColor:'1К-Черный металлик',
+				equipment:'Start'
+			},{
+				modelName:'Kia Sportage QLE',
+				modelImage:'templates/_ares/images/model3.png',
+				modelPrice:'52 000',
+				discount: true,
+				modelDiscountPrice:'37 820',
+				bodyType:'Универсал',
+				yearOfIssue:'2017',
+				engineType:'2.0i',
+				fuelType:'Дизель',
+				gearType:'Автомат',
+				driveType:'Передний',
+				bodyColor:'AA9-Красный металлик',
+				equipment:'Active + Пакет Навигация'
+			},
+			{
+				modelName:'Kia Sportage GT(+Package)',
+				modelImage:'templates/_ares/images/model2.png',
+				modelPrice:'54 413',
+				discount: false,
+				modelDiscountPrice:'0',
+				bodyType:'Легковой джип',
+				yearOfIssue:'2016',
+				engineType:'1.6T-GDi',
+				fuelType:'Бензин',
+				gearType:'Механика',
+				driveType:'Полный',
+				bodyColor:'Светло-коричневый металлик',
+				equipment:'Active'
+			},{
+				modelName:'Kia Sportage QLE',
+				modelImage:'templates/_ares/images/model3.png',
+				modelPrice:'52 000',
+				discount: true,
+				modelDiscountPrice:'37 820',
+				bodyType:'Универсал',
+				yearOfIssue:'2017',
+				engineType:'2.0i',
+				fuelType:'Дизель',
+				gearType:'Автомат',
+				driveType:'Передний',
+				bodyColor:'AA9-Красный металлик',
+				equipment:'Active + Пакет Навигация'
+			}
+		]
+	mixin buttons
+		ul.btn-block.btn-group
+			each item in buttons
+				li.btn-block__item
+					a(href="#").btn-group__link
+						case item
+							when "Интересует это авто"
+								button.interest.btn.btn_color #{item}
+							when "Купить в рассрочку"
+								button.payment.btn #{item}
+							when "Система Trade-In"
+								button.traidin.btn #{item}
+block content
+	div.btn-round
+		span.btn-round__item.scroll-top
+		span.btn-round__item.btn-call
+	include ../common/_header
+	section.content
+		.container
+			.row
+				.col-lg-2
+					aside.aside
+						.filters
+							p.filters__title Фильтры
+							section.filter__section.filter-section
+								p.filter-section__title Двигатель
+								ul.filter
+									each item,index in engineFilter
+										li.filter__item
+											label.custom-check(for=`engineFilter${index}`)
+												input.custom-check__checkbox.check-B(type='checkbox', name='engineFilter', id=`engineFilter${index}`)
+												span.custom-check__checkbox.check-B__background(data-ripple='false')
+												span.custom-check__checkbox.check-B__checkbox
+												span.custom-check__text #{item}
+							section.filter__section.filter-section
+								p.filter-section__title Привод
+								ul.filter
+									each item,index in driveFilter
+										li.filter__item
+											label.custom-check(for=`driveFilter${index}`)
+												input.custom-check__checkbox.check-B(type='checkbox', name='driveFilter', id=`driveFilter${index}`)
+												span.custom-check__checkbox.check-B__background(data-ripple='false')
+												span.custom-check__checkbox.check-B__checkbox
+												span.custom-check__text #{item}
+							section.filter__section.filter-section
+								p.filter-section__title Коробка передач
+								ul.filter
+									each item,index in gearFilter
+										li.filter__item
+											label.custom-check(for=`gearFilter${index}`)
+												input.custom-check__checkbox.check-B(type='checkbox', name='gearFilter', id=`gearFilter${index}`)
+												span.custom-check__checkbox.check-B__background(data-ripple='false')
+												span.custom-check__checkbox.check-B__checkbox
+												span.custom-check__text #{item}
+							section.filter__section.filter-section
+								p.filter-section__title Местонахождение
+								ul.filter
+									each item,index in positionFilter
+										li.filter__item
+											label.custom-check(for=`positionFilter${index}`)
+												input.custom-check__checkbox.check-B(type='checkbox', name='positionFilter', id=`positionFilter${index}`)
+												span.custom-check__checkbox.check-B__background(data-ripple='false')
+												span.custom-check__checkbox.check-B__checkbox
+												span.custom-check__text #{item}
+				.col-lg-10
+					main.main
+						each item in cars
+							article.model
+										.model__image-wrap
+											if item.discount == true
+												span.model__discount-label.discount-label %
+											else
+											img.model__image(src=`${item.modelImage}`, alt=`${item.modelName}` title=`${item.modelName}`)
+										.model__info
+											h3.model__name 
+												a.model__link(href="#" title=`${item.modelName}`) #{item.modelName}
+											if item.discount == true
+												.model__discount.discount
+													p.discount__old-price #{item.modelPrice}
+													p.discount__new-price #{item.modelDiscountPrice}
+											else 
+												p.model__price #{item.modelPrice}
+											ul.model__params.params
+												li.params__item 
+													span.params__name Тип кузова: 
+													span.params__val #{item.bodyType}
+												li.params__item 
+													span.params__name Год выпуска: 
+													span.params__val #{item.yearOfIssue}
+												li.params__item
+													span.params__name Двигатель: 
+													span.params__val #{item.engineType}
+												li.params__item
+													span.params__name Тип топлива:
+													span.params__val #{item.fuelType}
+												li.params__item
+													span.params__name Коробка передач: 
+													span.params__val #{item.gearType}
+												li.params__item
+													span.params__name Привод: 
+													span.params__val #{item.driveType}
+												li.params__item
+													span.params__name Цвет кузова: 
+													span.params__val #{item.bodyColor}
+												li.params__item
+													span.params__name Комплектация: 
+													span.params__val #{item.equipment}
+										.model__buttons
+											+buttons
+					.show-more
+						a(href="#" title="Показать еще")
+							button.btn Показать еще

@@ -1,0 +1,330 @@
+
+$headerTitleColor:#fff;
+//priceColor
+$priceColor:#000;
+$priceDiscountColor:#bb051c;
+//buttons
+$buttonDefaultBg:#e5e6e7;
+$buttonDefaultBgHover:#dadbdd;
+$buttonDefaultColor:#000;
+$buttonColorBg:#bc0015;
+$buttonColorBgHover:#a40010;
+$buttonColorColor:#fff;
+//filters
+$filtersBg:#f0f1f3;
+
+$dividerColor:#ccc;
+$oldPriceColor:#666;
+
+//sprite
+@import 'common/sprite-img';
+//checkbox
+@import 'common/custom-checkbox-settings';
+//header
+@import 'common/_header';
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+    max-width: 1308px;
+    width: 100%;
+}
+.content{
+	padding-bottom: 50px;
+}
+
+//discount-label
+.discount-label {
+    font-family: 'Calibri', sans-serif;
+    font-weight: 300;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: #fff;
+    background: $priceDiscountColor linear-gradient(45deg, #870313 0%, rgba(187, 5, 28, 0) 100%);
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+}
+
+//buttons
+.btn-group {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    &__link {
+        display: block;
+    }
+    .btn{
+   		padding-left: 35px;
+    }
+}
+.btn {
+    font-family: 'Open Sans', sans-serif;
+    background-color: $buttonDefaultBg;
+    transition: all .3s;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: $buttonDefaultColor;
+    font-size: 0.8125rem;
+    min-height: 40px;
+    width: 100%;
+    max-width: 202px;
+    position: relative;
+    &:hover,
+    &:visited,
+    &:active {
+        background-color: $buttonDefaultBgHover;
+        opacity: .9;
+        &:before{
+        	opacity: .9;
+        }
+    }
+    &:before{
+    	content:'';
+    	display: inline-block;
+    	position: absolute;
+    	left: 1.8em;
+    	transition:all .3s;
+    }
+    &.interest{
+    	&:before{
+    		 @include retina-sprite($interest-group);
+    	}
+	
+    }
+    &.payment{
+    	&:before{
+    		 @include retina-sprite($payment-group);
+    	}
+
+    }
+    &.traidin{
+    	&:before{
+    		 @include retina-sprite($traidin-group);
+    	}
+}
+    &_color {
+        background-color: $buttonColorBg;
+        color: $buttonColorColor;
+        &:hover,
+        &:visited,
+        &:active {
+            background-color: $buttonColorBgHover;
+        }
+    }
+}
+
+.btn-block {
+    &__item:not(:last-child) {
+        margin-bottom: 14px;
+    }
+}
+
+
+.filters {
+    padding: 15px 0 8px;
+    background-color: $filtersBg;
+    &__title {
+        margin: 0;
+        padding: 0 19px;
+        color: $priceColor;
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+}
+
+.filter-section {
+    padding: 17px 19px 12px;
+    &:not(:last-child){
+    border-bottom: 1px solid $dividerColor;
+    }
+    &__title {
+        color: $priceColor;
+        font-size: 0.875rem;
+        margin: 0px;
+        font-weight: 600;
+    }
+}
+
+.filter {
+    margin: 0;
+    padding: 20px 0 0;
+    list-style-type: none;
+    &__item:not(:last-child){
+    	margin-bottom:13px;
+    }
+}
+
+.model {
+	display: flex;
+    padding-bottom: 18px;
+    &:not(:last-child) {
+        border-bottom: 1px solid $dividerColor;
+    }
+    &:not(:first-child){
+    	padding-top: 18px;
+    }
+    &__discount-label {
+    	position: absolute;
+    	left: 21px;
+    	top: 3px;
+    }
+    &__image-wrap {
+        position: relative;
+        text-align: center;
+        padding-right: 14px;
+        padding-top: 20px;
+        width: 29.5%;
+    }
+    &__info{
+    	width: 49.9%;
+    	padding:0 14px;
+    }
+    &__image {
+        max-width: 100%;
+    }
+    &__name {
+        padding: 0;
+        margin-bottom: 12px;
+        margin-top: -4px;
+    }
+    &__link {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: $priceColor;
+        text-decoration: none;
+        &:hover{
+        	border-bottom: 2px solid $priceColor;
+        }
+    }
+    &__price {
+        margin: 0;
+        padding: 0;
+        color: $priceColor;
+        margin-bottom: .78em;
+        font-size: 1.5625rem;
+        font-weight: 700;
+        &:after{
+        	content: ' руб.'
+        }
+    }
+    &__discount-price{
+        margin: 0;
+        padding: 0;
+    }
+    &__buttons{
+    	padding-left: 15px;
+    	padding-top: 33px;
+		width: 20.6%;
+    }
+}
+
+
+.params {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    column-count: 2;
+    &__item {
+        color: #666666;
+        font-size: 0.8125rem;
+        font-weight: 400;
+        display: flex;
+        &:not(:last-child) {
+         margin-bottom: .65em;
+        }
+    }
+    &__val {
+    	max-width: 155px;
+        padding-left: 9px;
+        line-height: 16px;
+        color: $priceColor;
+    }
+}
+
+
+.discount {
+	margin-bottom: 1.2em;
+    &__old-price {
+        font-size: 0.875rem;
+        font-weight: 400;
+        color: $oldPriceColor;
+        text-decoration: line-through;
+        margin: 0;
+        margin-bottom: .3em;
+        &:after{
+        	content: ' руб.'
+        }
+    }
+    &__new-price {
+    	color:$priceDiscountColor;
+    	font-size: 1.5625rem;
+    	font-weight: 700;
+    	margin:0;
+    	&:after{
+        	content: ' руб.'
+        }
+    }
+}
+.show-more{
+	text-align: center;
+	padding-top: 20px;
+}
+
+.btn-round {
+	position: absolute;
+	right: 45px;
+	z-index: 1;
+	top: 731px;
+    &__item {
+    	&:not(:last-of-type){
+    		margin-bottom: 30px;
+    	}
+    }
+}
+.scroll-top,
+.btn-call {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    background: #d9dadc linear-gradient(45deg, rgba(228, 229, 230, 0) 0%, #ffffff 100%);
+    transition: all.5s;
+    &:hover {
+        box-shadow: 0px 0px 12px -2px rgba(171, 171, 171, 1);
+    }
+    &:before {
+        content: '';
+        display: inline-block;
+    }
+}
+
+.scroll-top {
+    &:before {
+        @include retina-sprite($up-group);
+    }
+}
+
+.btn-call {
+    box-shadow: 2px 3px 6px 0px rgba(171, 171, 171, 1);
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 2px 3px 15px 0px rgba(171, 171, 171, 1);
+    }
+    &:before {
+        @include retina-sprite($phone-group);
+    }
+}
+

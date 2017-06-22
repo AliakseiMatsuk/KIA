@@ -1,0 +1,28 @@
+block variables
+
+doctype html
+
+html
+	head
+		meta(charset="utf-8")
+		title #{title}
+		meta(content="" name="author")
+		meta(content=`${keywords}` name="keywords")
+		meta(content=`${description}` name="description")
+		meta(content="width=device-width, initial-scale=1" name="viewport")
+		meta(content="ie=edge" http-equiv="x-ua-compatible")
+		link(rel='stylesheet' href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700")
+		link(rel='stylesheet' href='templates/_ares/css/foundation.css')
+		link(rel='stylesheet' href='templates/_ares/css/app.css')
+		script(src='templates/_ares/js/foundation.js' defer)
+		script(src='templates/_ares/js/app.js' defer)
+
+		<!--[if lt IE 9]>
+		script(src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js")
+		<![endif]-->
+
+	body
+		block content
+
+
+
