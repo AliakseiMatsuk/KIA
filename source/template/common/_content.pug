@@ -4,7 +4,7 @@ section.content
 		span.btn-round__item.btn-call.animated.infinite.pulse.showForm(data-form="request-call")
 	.container
 		.row
-			.col-lg-2.col-md-3
+			.col-lg-2.col-md-3.col-sm-3.col-xs-8.col-xs-offset-2.col-sm-offset-0.col-md-offset-0.col-lg-offset-0
 				aside.aside
 					.filters
 						p.filters__title Фильтры
@@ -51,14 +51,13 @@ section.content
 					.clear-filters
 						a(href="#" title="Сбросить фильтры")
 							button.btn.clear Сбросить фильтры
-			.col-lg-10
+			.col-lg-10.col-md-9.col-sm-9.col-xs-12
 				main.main
 					each item in cars
 						article.model
 									.model__image-wrap
 										if item.discount == true
 											span.model__discount-label.discount-label %
-										else
 										img.model__image(src=`${item.modelImage}`, alt=`${item.modelName}` title=`${item.modelName}`)
 									.model__info
 										h3.model__name

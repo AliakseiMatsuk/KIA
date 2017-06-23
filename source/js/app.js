@@ -27,16 +27,41 @@
 
         myMap.geoObjects.add(myPlacemark);
     }
+
     //Fixed buttons
-    $(window).scroll(function() {
-        var $buttons = $(".btn-round");
-        //console.log($(window).scrollTop());
-        if ($(this).scrollTop() > 700 && $buttons.hasClass("default")) {
-            $buttons.removeClass("default").addClass("fixed");
-        } else if ($(this).scrollTop() <= 700 && $buttons.hasClass("fixed")) {
-            $buttons.removeClass("fixed").addClass("default");
+    (function fixedButtons() {
+        var $window = $(window),
+            $buttons = $(".btn-round"),
+            defaultPosition = 'default',
+            fixedPosition = 'fixed',
+            toFixed;
+
+        function scrollPosition(toFixed) {
+            if ($(window).scrollTop() > toFixed && $buttons.hasClass(defaultPosition)) {
+                $buttons.removeClass(defaultPosition).addClass(fixedPosition);
+            } else if ($(window).scrollTop() <= toFixed && $buttons.hasClass(fixedPosition)) {
+                $buttons.removeClass(fixedPosition).addClass(
+                    defaultPosition);
+            }
         }
-    });
+        $(window).scroll(function() {
+            var windowWidth = $(this).width();
+            if (windowWidth > 1900) {
+                scrollPosition(700);
+            } else if (windowWidth <= 1900 && windowWidth > 1800) {
+                scrollPosition(665);
+            } else if (windowWidth <=1800 && windowWidth > 1700) {
+                scrollPosition(630);
+            } else if (windowWidth <=1700 && windowWidth > 1600) {
+                scrollPosition(595);
+            } else if (windowWidth <=1600 && windowWidth > 1500) {
+                scrollPosition(555);
+            } else {
+                $buttons.addClass('')
+            }
+        });
+    })()
+
     //Parallax
     var scene = document.getElementById('scene');
     var parallax = new Parallax(scene);
@@ -57,7 +82,7 @@
             animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
         $layout.add($formToShow).fadeIn();
         $formToShow.addClass(fadeInAnimation);
-        if(formToShowIndex == 'interest-auto'){
+        if (formToShowIndex == 'interest-auto') {
             var modelID = $this.closest('.model').find('.model__id').text();
             $formToShow.find('.form__input_modelId').prop('value', modelID);
             console.log($('.form__input_modelId').val());
@@ -79,20 +104,20 @@
     });
 
 
-     $(".scroll-top").click(function(e) {
-         e.preventDefault();
-         var scroll_el = $(this).attr('data-href');
-         if ($(scroll_el).length != 0) {
-             $('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 1000);
-         }
-         return false;
-     });
+    $(".scroll-top").click(function(e) {
+        e.preventDefault();
+        var scroll_el = $(this).attr('data-href');
+        if ($(scroll_el).length != 0) {
+            $('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 1000);
+        }
+        return false;
+    });
 
 
-$('.clear').on('click', function(event) {
-    event.preventDefault();
-    $('.filters').find('input[type="checkbox"]').prop('checked', false);
-});
+    $('.clear').on('click', function(event) {
+        event.preventDefault();
+        $('.filters').find('input[type="checkbox"]').prop('checked', false);
+    });
 
 
 
