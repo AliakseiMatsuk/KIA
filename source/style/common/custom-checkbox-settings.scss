@@ -11,6 +11,7 @@ label {
     touch-action: none
 }
 
+
 input[class^="custom-check__checkbox"] + span[class^="custom-check__checkbox"] > span[data-ripple="true"]::before,
 span[data-ripple="true"]::before {
     background-color: rgba(177, 230, 254, 0.9);

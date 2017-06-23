@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-//MAP
+    //MAP
     ymaps.ready(initMap);
     var myMap,
         myPlacemark;
@@ -27,7 +27,7 @@
 
         myMap.geoObjects.add(myPlacemark);
     }
-//Fixed buttons
+    //Fixed buttons
     $(window).scroll(function() {
         var $buttons = $(".btn-round");
         //console.log($(window).scrollTop());
@@ -37,13 +37,13 @@
             $buttons.removeClass("fixed").addClass("default");
         }
     });
-//Parallax
-  var scene = document.getElementById('scene');
-  var parallax = new Parallax(scene);
-//Select
-  $('.select').selectize();
+    //Parallax
+    var scene = document.getElementById('scene');
+    var parallax = new Parallax(scene);
+    //Select
+    $('.select').selectize();
 
-//form
+    //form
     // пример валидации и отправки формы ajax
     $("#interest-auto-form,#request-call-form").validationEngine('attach', {
         //отображение стрелки возле подсказоки
@@ -64,7 +64,6 @@
             if (status == true) {
                 $.ajax({
                         type: form.attr('method'),
-                        url: form.attr('action'),
                         cache: false,
                         data: form.serialize(), //отправляем собранные данные полей
                     })
@@ -80,15 +79,14 @@
                         console.log("Всегда");
                     });
             } else {
+            	$(".formErrorContent br").remove();
+            	$(".form").addClass("animated shake");
+            	$(".form").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+            	    $(this).removeClass("animated shake"); //убираем класс после окончания анимации
+            	});
                 console.log("Ошибка валидации");
             }
         }
     });
     $('.phone').mask("+375-99-999-99-99"); // маска для полей ввода
-
-
-
-
-
-
 })();

@@ -79,13 +79,53 @@ text-decoration: underline;
     transform: scale3d(1, 1, 1);
   }
 }
+@-webkit-keyframes shake {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 
+  10%, 50% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  30%, 70% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+}
+
+@keyframes shake {
+  from, to {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  10%, 50% {
+    -webkit-transform: translate3d(-5px, 0, 0);
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  30%, 70% {
+    -webkit-transform: translate3d(5px, 0, 0);
+    transform: translate3d(5px, 0, 0);
+  }
+
+}
+.shake {
+  -webkit-animation-name: shake;
+  animation-name: shake;
+}
 .pulse {
   animation-name: pulse;
 }
 .animated {
-  animation-duration: 3s;
+  animation-duration: .6s;
   animation-fill-mode: both;
+  &.btn-call{
+  	animation-duration: 3s;
+  }
 }
 
 .animated.infinite {
@@ -602,7 +642,7 @@ body {
     &__item {
     	position: relative;
         &:not(:last-child) {
-            margin-bottom: 15px;
+            margin-bottom: 17px;
         }
     }
 }
@@ -622,4 +662,7 @@ body {
         font-size: 0.75rem;
         color:$priceDiscountColor;
     }
-
+.required-field + .cyrillic-only,
+.required-field + .incorrect-email {
+    display: none;
+}
