@@ -10,6 +10,7 @@ block variables
 	- var gearFilter = ['Автомат', 'Механика']
 	- var positionFilter = ['На складе', 'В пути']
 	- var buttons = ['Интересует это авто', 'Купить в рассрочку', 'Система Trade-In']
+	- var contactTypeList = ['', 'По телефону', 'Сообщение в Вайбере', 'По электронной почте']
 	-
 		var cars = [
 			{
@@ -84,6 +85,49 @@ block variables
 							when "Система Trade-In"
 								button.traidin.btn #{item}
 block content
+	.layout
+		.forms-wrapper
+			form.request-call(method="POST" id="request-call-form")
+				.form
+					.close.form__close
+					.color-title.form__title Заказать звонок
+					ul.form-list
+						li.form-list__item
+							label.form__label(for="request-call1") Ваше имя 
+								span.star *
+							input.form__input(type="text", id="request-call1" class="validate[required]")
+						li.form-list__item
+							label.form__label(for="request-call2") Контактный телефон
+								span.star *
+							input.form__input(type="text", id="request-call2" class="validate[required] phone")
+					input.form__submit(type="submit", value="Отправить", id="request-call-form")
+			form.interest-auto(method="POST" id="interest-auto-form")
+				.form
+					.close.form__close
+					.color-title.form__title Интересует это авто
+					ul.form-list
+						li.form-list__item
+							label.form__label(for="interest-auto1") Ваше имя 
+								span.star *
+							input.form__input(type="text", id="interest-auto1", class="validate[required]")
+						li.form-list__item
+							label.form__label(for="interest-auto2") Контактный телефон 
+								span.star *
+							input.form__input(type="text", id="interest-auto2" class="validate[required] phone")
+						li.form-list__item
+							label.form__label(for="interest-auto3") Ваш e-mail
+							input.form__input(type="text", id="interest-auto3" class="validate[required,custom[email]]")
+						li.form-list__item
+							label.form__label(for="interest-auto4") Желаемый способ связи 
+								span.star *
+							select.select(class="validate[required]")
+								each option in contactTypeList
+									option(value=`${option}`) #{option}
+						li.form-list__item
+							label.form__label(for="interest-auto5") Удобное время и дата
+							input.form__input(type="text", id="interest-auto5")
+					p.agreement Нажав кнопку «Отправить», я даю согласие на обработку моих персональных данных и получение рекламы. С условиями обработки персональных данных и получения рекламы, изложенными на сайте ознакомлен и согласен.
+					input.form__submit(type="submit", value="Отправить")
 	include ../common/_header
 	include ../common/_content
 	footer.footer

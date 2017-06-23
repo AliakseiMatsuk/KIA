@@ -15,11 +15,45 @@ $filtersBg:#f0f1f3;
 
 $dividerColor:#ccc;
 $oldPriceColor:#666;
-
+//sprite
+@import 'common/sprite-img';
+//checkbox
+@import 'common/custom-checkbox-settings';
+//header
+@import 'common/_header';
 
 .ymaps-2-1-50-image {
 	background-size: auto !important;
 	background-position: 0 -80px !important;
+}
+input{
+	outline: none;
+}
+.select{
+	cursor: pointer;
+	max-width: 378px;
+}
+.selectize-control.single .selectize-input:after{
+    border-color: #000 transparent transparent;
+}
+.selectize-control.single .selectize-input{
+	border: 1px solid #e4e5e6;
+	background-image: none;
+	background-color: #fff;
+	box-shadow: none;
+}
+.option{
+	color:#000;
+}
+.option.active{
+	background-color: #f5f5f5;
+	color:#000;
+}
+.selectize-dropdown.single{
+	border: 1px solid #e4e5e6;
+}
+.selectize-dropdown [data-selectable]{
+	padding: 8px;
 }
 a{
 
@@ -57,13 +91,17 @@ text-decoration: underline;
 .animated.infinite {
   animation-iteration-count: infinite;
 }
-
-//sprite
-@import 'common/sprite-img';
-//checkbox
-@import 'common/custom-checkbox-settings';
-//header
-@import 'common/_header';
+.close {
+    @include retina-sprite($close-group);
+}
+.agreement{
+	color:#999999;
+	font-size: 0.625rem;
+	max-width: 350px;
+	line-height: 1.4;
+	margin-top: 30px;
+	margin-bottom: 15px;
+}
 html {
     font-size: 16px;
 }
@@ -427,7 +465,6 @@ body {
         position: absolute;
         z-index: 1;
         bottom: 0;
-        //@include retina-sprite($placeholder-group);
     }
     &__contacts {
         max-width: 407px;
@@ -470,3 +507,119 @@ body {
         margin-bottom: 5px;
     }
 }
+
+
+.layout {
+    background-color: rgba(0,0,0,.3);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 1001;
+    display: block;
+}
+.forms-wrapper {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.teaserBox.right{
+    clear:both;
+}
+.request-call,.interest-auto{
+	width: 100%;
+	text-align: center;
+}
+.request-call{
+	display: none;
+	.form__submit{
+		margin-top: 30px;
+	}
+}
+.form {
+    padding: 30px 30px;
+    background-color: #fff;
+    display: inline-block;
+    max-width: 465px;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    &__input {
+        width: 100%;
+        max-width: 378px;
+        height: 34px;
+        border: 1px solid #e4e5e6;
+        transition: all .5s;
+        outline: none;
+        padding-left: 15px;
+        font-size: 0.8125rem;
+        &:focus {
+            border-color: #6d6d6d;
+        }
+    }
+    &__title {
+        margin-bottom: 25px;
+    }
+    &__label {
+        display: block;
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+    &__close{
+    	position: absolute;
+    	right: 10px;
+    	top: 10px;
+    	cursor: pointer;
+    }
+    &__submit {
+        background-color: $priceDiscountColor;
+        border: none;
+        width: 100%;
+        height: 40px;
+        max-width: 160px;
+        color: #fff;
+        cursor: pointer;
+        transition:all .3s;
+        font-size: 0.8125rem;
+        font-weight: 400;
+        &:hover{
+        	background-color:$buttonColorBgHover;
+        }
+    }
+}
+
+
+.form-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    color: $oldPriceColor;
+    font-size: 0.8125rem;
+    font-weight: 400;
+    &__item {
+    	position: relative;
+        &:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.star{
+	color: $priceDiscountColor;
+}
+
+
+    .formError {
+        bottom: -15px !important;
+        left: 0px !important;
+        margin: 0px !important;
+        opacity: 1 !important;
+        top: auto !important;
+        margin: 0px !important;
+        font-size: 0.75rem;
+        color:$priceDiscountColor;
+    }
+
