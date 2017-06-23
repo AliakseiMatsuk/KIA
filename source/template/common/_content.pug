@@ -1,7 +1,7 @@
 section.content
 	div.btn-round.default
-		span.btn-round__item.scroll-top
-		span.btn-round__item.btn-call.animated.infinite.pulse 
+		span.btn-round__item.scroll-top(data-href=".header")
+		span.btn-round__item.btn-call.animated.infinite.pulse.showForm(data-form="request-call")
 	.container
 		.row
 			.col-lg-2.col-md-3
@@ -61,38 +61,39 @@ section.content
 										else
 										img.model__image(src=`${item.modelImage}`, alt=`${item.modelName}` title=`${item.modelName}`)
 									.model__info
-										h3.model__name 
+										h3.model__name
 											a.model__link(href="#" title=`${item.modelName}`) #{item.modelName}
 										if item.discount == true
 											.model__discount.discount
 												p.discount__old-price #{item.modelPrice}
 												p.discount__new-price #{item.modelDiscountPrice}
-										else 
+										else
 											p.model__price #{item.modelPrice}
 										ul.model__params.params
-											li.params__item 
-												span.params__name Тип кузова: 
+											span.model__id #{item.modelId}
+											li.params__item
+												span.params__name Тип кузова:
 												span.params__val #{item.bodyType}
-											li.params__item 
-												span.params__name Год выпуска: 
+											li.params__item
+												span.params__name Год выпуска:
 												span.params__val #{item.yearOfIssue}
 											li.params__item
-												span.params__name Двигатель: 
+												span.params__name Двигатель:
 												span.params__val #{item.engineType}
 											li.params__item
 												span.params__name Тип топлива:
 												span.params__val #{item.fuelType}
 											li.params__item
-												span.params__name Коробка передач: 
+												span.params__name Коробка передач:
 												span.params__val #{item.gearType}
 											li.params__item
-												span.params__name Привод: 
+												span.params__name Привод:
 												span.params__val #{item.driveType}
 											li.params__item
-												span.params__name Цвет кузова: 
+												span.params__name Цвет кузова:
 												span.params__val #{item.bodyColor}
 											li.params__item
-												span.params__name Комплектация: 
+												span.params__name Комплектация:
 												span.params__val #{item.equipment}
 									.model__buttons
 										+buttons

@@ -79,22 +79,6 @@ text-decoration: underline;
     transform: scale3d(1, 1, 1);
   }
 }
-@-webkit-keyframes shake {
-  from, to {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-
-  10%, 50% {
-    -webkit-transform: translate3d(-5px, 0, 0);
-    transform: translate3d(-5px, 0, 0);
-  }
-
-  30%, 70% {
-    -webkit-transform: translate3d(5px, 0, 0);
-    transform: translate3d(5px, 0, 0);
-  }
-}
 
 @keyframes shake {
   from, to {
@@ -112,6 +96,35 @@ text-decoration: underline;
     transform: translate3d(5px, 0, 0);
   }
 
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+ @keyframes fadeOutUp {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+.fadeOutUp {
+  animation-name: fadeOutUp;
+}
+.fadeInDown {
+  animation-name: fadeInDown;
 }
 .shake {
   -webkit-animation-name: shake;
@@ -219,7 +232,7 @@ body {
     	&:before{
     		 @include retina-sprite($interest-group);
     	}
-	
+
     }
     &.payment{
     	&:before{
@@ -303,6 +316,9 @@ body {
     }
     &:not(:first-child){
     	padding-top: 18px;
+    }
+    &__id{
+        display: none;
     }
     &__discount-label {
     	position: absolute;
@@ -557,7 +573,7 @@ body {
     left: 0;
     top: 0;
     z-index: 1001;
-    display: block;
+    display: none;
 }
 .forms-wrapper {
     display: flex !important;
@@ -573,8 +589,10 @@ body {
 	width: 100%;
 	text-align: center;
 }
+.interest-auto,.request-call{
+    display: none;
+}
 .request-call{
-	display: none;
 	.form__submit{
 		margin-top: 30px;
 	}

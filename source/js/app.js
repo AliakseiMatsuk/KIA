@@ -43,10 +43,62 @@
     //Select
     $('.select').selectize();
 
+    $('.showForm').on('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        var $this = $(this),
+            $callForm = $('request-call'),
+            $interestAuto = $('interest-auto'),
+            $layout = $('.layout'),
+            formToShowIndex = $this.data('form'),
+            $formToShow = $layout.find('.' + formToShowIndex),
+            fadeInAnimation = 'animated fadeInDown',
+            fadeOutAnimation = 'animated fadeOutUp',
+            animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        $layout.add($formToShow).fadeIn();
+        $formToShow.addClass(fadeInAnimation);
+        if(formToShowIndex == 'interest-auto'){
+            var modelID = $this.closest('.model').find('.model__id').text();
+            $formToShow.find('.form__input_modelId').prop('value', modelID);
+            console.log($('.form__input_modelId').val());
+        }
+        $formToShow.one(animationEnd, function() {
+            $(this).removeClass(fadeInAnimation);
+        });
+
+        $('.form__close').on('click', function(event) {
+            event.preventDefault();
+            $formToShow.addClass('animated fadeOutUp');
+            $layout.fadeOut();
+            setTimeout(function() {
+                $formToShow.find('form').validationEngine('hide');
+                $formToShow.find('form')[0].reset();
+                $formToShow.removeClass(fadeOutAnimation).hide();
+            }, 500);
+        });
+    });
+
+
+     $(".scroll-top").click(function(e) {
+         e.preventDefault();
+         var scroll_el = $(this).attr('data-href');
+         if ($(scroll_el).length != 0) {
+             $('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 1000);
+         }
+         return false;
+     });
+
+
+$('.clear').on('click', function(event) {
+    event.preventDefault();
+    $('.filters').find('input[type="checkbox"]').prop('checked', false);
+});
+
+
+
     //form
-    // пример валидации и отправки формы ajax
     $("#interest-auto-form,#request-call-form").validationEngine('attach', {
-        //отображение стрелки возле подсказоки
+        //отображение стрелки возле подсказки
         showArrow: false,
         //отображение стрелки возле подсказоки радио и чекбокс
         showArrowOnRadioAndCheckbox: false,
@@ -57,9 +109,9 @@
         //показывать ошибку только для первого поля
         showOneMessage: true,
         //фокус на первом поле
-        focusFirstField: false,
+        focusFirstField: true,
         //обновление позиции подсказки при резайзе окна
-        autoPositionUpdate: true,
+        autoPositionUpdate: false,
         onValidationComplete: function(form, status) { // Когда валидация включена и сканирование формы завершено
             if (status == true) {
                 $.ajax({
@@ -79,12 +131,12 @@
                         console.log("Всегда");
                     });
             } else {
-            	$(".formErrorContent br").remove();
-            	$(".form").addClass("animated shake");
-            	$(".form").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
-            	    $(this).removeClass("animated shake"); //убираем класс после окончания анимации
-            	});
-                console.log("Ошибка валидации");
+                console.log(form);
+                $(".formErrorContent br").remove();
+                form.addClass("animated shake");
+                form.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                    $(this).removeClass("animated shake"); //убираем класс после окончания анимации
+                });
             }
         }
     });

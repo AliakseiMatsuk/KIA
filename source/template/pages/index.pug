@@ -15,6 +15,7 @@ block variables
 		var cars = [
 			{
 				modelName:'Kia Sportage QLE',
+				modelId:'3456',
 				modelImage:'templates/_ares/images/black.png',
 				modelPrice:'52 000',
 				discount: true,
@@ -29,6 +30,7 @@ block variables
 				equipment:'Start'
 			},{
 				modelName:'Kia Sportage QLE',
+				modelId:'9012',
 				modelImage:'templates/_ares/images/model3.png',
 				modelPrice:'52 000',
 				discount: true,
@@ -44,6 +46,7 @@ block variables
 			},
 			{
 				modelName:'Kia Sportage GT(+Package)',
+				modelId:'5678',
 				modelImage:'templates/_ares/images/model2.png',
 				modelPrice:'54 413',
 				discount: false,
@@ -58,6 +61,7 @@ block variables
 				equipment:'Active'
 			},{
 				modelName:'Kia Sportage QLE',
+				modelId:'1234',
 				modelImage:'templates/_ares/images/model3.png',
 				modelPrice:'52 000',
 				discount: true,
@@ -79,11 +83,11 @@ block variables
 					a(href="#").btn-group__link
 						case item
 							when "Интересует это авто"
-								button.interest.btn.btn_color #{item}
+								button.btn.btn_color.interest.showForm(data-form="interest-auto") #{item}
 							when "Купить в рассрочку"
-								button.payment.btn #{item}
+								button.btn.payment #{item}
 							when "Система Trade-In"
-								button.traidin.btn #{item}
+								button.btn.traidin #{item}
 block content
 	.layout
 		.forms-wrapper
@@ -94,12 +98,12 @@ block content
 						.color-title.form__title Заказать звонок
 						ul.form-list
 							li.form-list__item
-								label.form__label(for="request-call1") Ваше имя 
-									span.star *
+								label.form__label(for="request-call1") Ваше имя
+									span.star  *
 								input.form__input(type="text", id="request-call1" class="validate[required]")
 							li.form-list__item
 								label.form__label(for="request-call2") Контактный телефон
-									span.star *
+									span.star  *
 								input.form__input(type="text", id="request-call2" class="validate[required] phone")
 						input.form__submit(type="submit", value="Отправить", id="request-call-form")
 			.interest-auto
@@ -108,20 +112,21 @@ block content
 						.close.form__close
 						.color-title.form__title Интересует это авто
 						ul.form-list
+							input.form__input.form__input_modelId(type="hidden",)
 							li.form-list__item
-								label.form__label(for="interest-auto1") Ваше имя 
-									span.star *
+								label.form__label(for="interest-auto1") Ваше имя
+									span.star  *
 								input.form__input(type="text", id="interest-auto1", class="validate[required]")
 							li.form-list__item
-								label.form__label(for="interest-auto2") Контактный телефон 
-									span.star *
+								label.form__label(for="interest-auto2") Контактный телефон
+									span.star  *
 								input.form__input(type="text", id="interest-auto2" class="validate[required] phone")
 							li.form-list__item
 								label.form__label(for="interest-auto3") Ваш e-mail
 								input.form__input(type="text", id="interest-auto3" class="validate[required,custom[email]]")
 							li.form-list__item
-								label.form__label(for="interest-auto4") Желаемый способ связи 
-									span.star *
+								label.form__label(for="interest-auto4") Желаемый способ связи
+									span.star  *
 								select.select(class="validate[required]")
 									each option in contactTypeList
 										option(value=`${option}`) #{option}
@@ -152,7 +157,7 @@ block content
 							span.contacts-list__value Отдел продаж автомобилей:
 							span.contacts-list__value Пн - Пт 9:00 - 20:00
 							span.contacts-list__value Сб - Вс 10:00 - 18:00
-			
+
 		#map.footer__map
 		.footer__bottom
 			.container
