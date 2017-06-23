@@ -14,6 +14,7 @@
         color: $headerTitleColor;
         font-weight: 700;
         font-size: 3.75rem;
+        margin-top: 10px;
         &:after{
         	content: ' руб'
         }
@@ -21,20 +22,17 @@
 }
 
 .header {
-    min-height: 730px;
     overflow: hidden;
-    background-size: cover;
+    position: relative;
     &__content {
-        position: relative;
-        z-index: 1;
+        position: absolute;
+        width: 100%;
+        top: 0;
         color: $headerTitleColor;
-        margin: 0;
     }
     &__img {
         max-width: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
+        display: block;
     }
     &__title,
     &__subtitle {
@@ -51,5 +49,10 @@
     }
     &__main-price {
     	margin-left: -10px;
+    }
+    &__price-wrap{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
     }
 }

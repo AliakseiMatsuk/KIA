@@ -16,6 +16,48 @@ $filtersBg:#f0f1f3;
 $dividerColor:#ccc;
 $oldPriceColor:#666;
 
+
+.ymaps-2-1-50-image {
+	background-size: auto !important;
+	background-position: 0 -80px !important;
+}
+a{
+
+color: #bb162b;
+font-size: 0.875rem;
+font-weight: 400;
+text-decoration: underline;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  20% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+  40%{
+  	transform: scale3d(1, 1, 1);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation-name: pulse;
+}
+.animated {
+  animation-duration: 3s;
+  animation-fill-mode: both;
+}
+
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+
 //sprite
 @import 'common/sprite-img';
 //checkbox
@@ -35,7 +77,8 @@ body {
     width: 100%;
 }
 .content{
-	padding-bottom: 50px;
+	position: relative;
+	padding:3.8em 0 50px;
 }
 
 //discount-label
@@ -111,6 +154,13 @@ body {
     		 @include retina-sprite($traidin-group);
     	}
 }
+	&.clear{
+		padding-left: 35px;
+		&:before{
+			 @include retina-sprite($clear-group);
+			top: 1.1em;
+		}
+	}
     &_color {
         background-color: $buttonColorBg;
         color: $buttonColorColor;
@@ -162,6 +212,9 @@ body {
     &__item:not(:last-child){
     	margin-bottom:13px;
     }
+}
+.clear-filters{
+	margin-top: 2px;
 }
 
 .model {
@@ -235,7 +288,7 @@ body {
     list-style-type: none;
     column-count: 2;
     &__item {
-        color: #666666;
+        color: $oldPriceColor;
         font-size: 0.8125rem;
         font-weight: 400;
         display: flex;
@@ -281,16 +334,23 @@ body {
 }
 
 .btn-round {
-	position: absolute;
-	right: 45px;
-	z-index: 1;
-	top: 731px;
+    &.default {
+    	position: absolute;
+    }
+    &.fixed {
+	position: fixed;
+    }
+    right: 50px;
+    top:80px;
+    z-index: 1;
+    // /top: 795px;
     &__item {
-    	&:not(:last-of-type){
-    		margin-bottom: 30px;
-    	}
+        &:not(:last-of-type) {
+            margin-bottom: 30px;
+        }
     }
 }
+
 .scroll-top,
 .btn-call {
     width: 60px;
@@ -320,7 +380,6 @@ body {
 .btn-call {
     box-shadow: 2px 3px 6px 0px rgba(171, 171, 171, 1);
     &:hover {
-        transform: scale(1.05);
         box-shadow: 2px 3px 15px 0px rgba(171, 171, 171, 1);
     }
     &:before {
@@ -328,3 +387,86 @@ body {
     }
 }
 
+
+.color-title{
+	font-size: 1.625rem;
+	background-color: $priceDiscountColor;
+	font-weight: 700;
+	padding: 6px 10px;
+	color:#fff;
+	display: inline-block;
+}
+
+.contacts {
+	background-color: #fff;
+	padding: 30px 30px 5px;
+	width: 100%;
+	&__title{
+		 margin-bottom: 2px;
+	}
+}
+
+.footer {
+    position: relative;
+    padding-top: 50px;
+    min-height: 560px;
+    &__container {
+        position: relative;
+        z-index: 1;
+    }
+    &__map {
+        width: 100%;
+        height:515px;
+        position: absolute;
+        top: 0;
+    }
+    &__bottom {
+        height: 45px;
+        width: 100%;
+        background-color: #fff;
+        position: absolute;
+        z-index: 1;
+        bottom: 0;
+        //@include retina-sprite($placeholder-group);
+    }
+    &__contacts {
+        max-width: 407px;
+        position: absolute;
+        left: 13px;
+    }
+    &__logo{
+    	@include retina-sprite($bottom-logo-icon-group);
+    	position: absolute;
+    	top: -33px;
+    	right: 30px;
+    }
+}
+
+
+.contacts-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    padding-top: 15px;
+    &__item {
+        margin-bottom: 26px;
+    }
+    &__title {
+        color: #000;
+        margin: 0;
+        font-size: 0.875rem;
+        font-weight: 700;
+        margin-bottom: 5px;
+    }
+    &__value {
+        display: block;
+        color: $oldPriceColor;
+        font-size: 0.875rem;
+        font-weight: 400;
+        margin: 0;
+    }
+    &__value:first-of-type,
+    &__value:first-of-type + &__value {
+        margin-bottom: 5px;
+    }
+}
