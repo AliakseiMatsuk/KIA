@@ -1,0 +1,46 @@
+.tabs {
+    &__nav {
+    	margin: 0;
+    	padding: 0;
+    	margin-bottom: 20px;
+    }
+    &__nav-item {
+    	display: inline-block;
+    	&:not(:last-child){
+    		margin-right: 20px;
+    		@media(max-width: 480px){
+    		   margin-right: 10px;
+    		}
+    	}
+
+    }
+    &__nav-link {
+        font-size: 1.125rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        color:  #666;
+        border-bottom: 2px dashed #666;
+        @media(max-width: 767px){
+            font-size: .9rem;
+        }
+        &_active {
+        	cursor: default;
+            color: #000;
+            border-bottom: 2px dashed transparent;
+             pointer-events: none;
+        }
+    }
+    &__list {
+    	margin:0;
+    	padding: 0;
+    	list-style-type: none;
+    }
+    &__item {
+    	display: none;
+        &_active {
+        	display: block;
+        }
+    }
+}
+

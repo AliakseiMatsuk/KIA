@@ -89,52 +89,31 @@ block variables
 							when "Система Trade-In"
 								button.btn.traidin #{item}
 block content
+	div.btn-round
+		.btn-round__item.scroll-top(data-href=".header")
+		.btn-round__item.btn-call.animated.infinite.pulse.showForm(data-form="request-call")
 	.layout
 		.forms-wrapper
 			.request-call
-				form(method="POST" id="request-call-form")
-					.form
-						.close.form__close
-						.color-title.form__title Заказать звонок
-						ul.form-list
-							li.form-list__item
-								label.form__label(for="request-call1") Ваше имя
-									span.star  *
-								input.form__input(type="text", id="request-call1" class="validate[required]")
-							li.form-list__item
-								label.form__label(for="request-call2") Контактный телефон
-									span.star  *
-								input.form__input(type="text", id="request-call2" class="validate[required] phone")
-						input.form__submit(type="submit", value="Отправить", id="request-call-form")
+				.form
+					.close.form__close.closeForm
+					.color-title.form__title Заказать звонок
+					include ../common/request-call-form
 			.interest-auto
-				form(method="POST" id="interest-auto-form")
-					.form
-						.close.form__close
-						.color-title.form__title Интересует это авто
-						ul.form-list
-							input.form__input.form__input_modelId(type="hidden",)
-							li.form-list__item
-								label.form__label(for="interest-auto1") Ваше имя
-									span.star  *
-								input.form__input(type="text", id="interest-auto1", class="validate[required]")
-							li.form-list__item
-								label.form__label(for="interest-auto2") Контактный телефон
-									span.star  *
-								input.form__input(type="text", id="interest-auto2" class="validate[required] phone")
-							li.form-list__item
-								label.form__label(for="interest-auto3") Ваш e-mail
-								input.form__input(type="text", id="interest-auto3" class="validate[required,custom[email]]")
-							li.form-list__item
-								label.form__label(for="interest-auto4") Желаемый способ связи
-									span.star  *
-								select.select(class="validate[required]")
-									each option in contactTypeList
-										option(value=`${option}`) #{option}
-							li.form-list__item
-								label.form__label(for="interest-auto5") Удобное время и дата
-								input.form__input(type="text", id="interest-auto5")
-						p.agreement Нажав кнопку «Отправить», я даю согласие на обработку моих персональных данных и получение рекламы. С условиями обработки персональных данных и получения рекламы, изложенными на сайте ознакомлен и согласен.
-						input.form__submit(type="submit", value="Отправить")
+				.form
+					.close.form__close.closeForm
+					.color-title.form__title Интересует это авто
+					.form__tabs.tabs
+						ul.tabs__nav
+							li.tabs__nav-item(data-tab="1")
+								a.tabs__nav-link.tabs__nav-link_active Заказать Тест-Драйв
+							li.tabs__nav-item(data-tab="2")
+								a.tabs__nav-link Обратный звонок
+						ul.tabs__list
+							li.tabs__item.tabs__item-1.tabs__item_active
+								include ../common/test-drive-form
+							li.tabs__item.tabs__item-2
+								include ../common/request-call-form2
 	include ../common/_header
 	include ../common/_content
 	footer.footer

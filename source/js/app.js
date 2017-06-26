@@ -28,39 +28,79 @@
         myMap.geoObjects.add(myPlacemark);
     }
 
-    //Fixed buttons
-    (function fixedButtons() {
-        var $window = $(window),
-            $buttons = $(".btn-round"),
-            defaultPosition = 'default',
-            fixedPosition = 'fixed',
-            toFixed;
+    $(window).on({
+        scroll: function() {
+            var windowWidth = $(this).width(),
+                scrollTopPosition = $(this).scrollTop(),
+                $scrollTopButton = $('.scroll-top'),
+                fadeIn = 'animated fadeIn',
+                animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
-        function scrollPosition(toFixed) {
-            if ($(window).scrollTop() > toFixed && $buttons.hasClass(defaultPosition)) {
-                $buttons.removeClass(defaultPosition).addClass(fixedPosition);
-            } else if ($(window).scrollTop() <= toFixed && $buttons.hasClass(fixedPosition)) {
-                $buttons.removeClass(fixedPosition).addClass(
-                    defaultPosition);
+            function showButton() {
+                $scrollTopButton.addClass(fadeIn)
+            }
+
+            function hideButton() {
+                $scrollTopButton.removeClass(fadeIn)
+            }
+            if (windowWidth > 1900) {
+                if (scrollTopPosition >= 700) {
+                    showButton();
+                } else {
+                    hideButton();
+                }
+            } else if (windowWidth >= 1800) {
+                if (scrollTopPosition >= 665) {
+                    showButton();
+                } else {
+                    hideButton();
+                }
+            } else if (windowWidth >= 1700) {
+                if (scrollTopPosition >= 600) {
+                    showButton();
+                } else {
+                    hideButton();
+                }
+            } else if (windowWidth >= 1600) {
+                if (scrollTopPosition >= 500) {
+                    showButton();
+                } else {
+                    hideButton();
+                }
+            } else if (windowWidth >= 1500) {
+                if (scrollTopPosition > 400) {
+                    showButton();
+                } else {
+                    hideButton();
+                }
+            } else if (windowWidth >= 992) {
+                if (scrollTopPosition >= 300) {
+                    showButton();
+                } else {
+                    hideButton();
+                }
+            }else if (windowWidth >= 992) {
+                if (scrollTopPosition >= 300) {
+                    showButton();
+                } else {
+                    hideButton();
+                }
+            }
+            else{
+                if (scrollTopPosition >= 250) {
+                    showButton();
+                } 
+                else {
+                    hideButton();
+                }
             }
         }
-        $(window).scroll(function() {
-            var windowWidth = $(this).width();
-            if (windowWidth > 1900) {
-                scrollPosition(700);
-            } else if (windowWidth <= 1900 && windowWidth > 1800) {
-                scrollPosition(665);
-            } else if (windowWidth <=1800 && windowWidth > 1700) {
-                scrollPosition(630);
-            } else if (windowWidth <=1700 && windowWidth > 1600) {
-                scrollPosition(595);
-            } else if (windowWidth <=1600 && windowWidth > 1500) {
-                scrollPosition(555);
-            } else {
-                $buttons.addClass('')
-            }
-        });
-    })()
+    });
+
+
+
+
+
 
     //Parallax
     var scene = document.getElementById('scene');
@@ -85,13 +125,12 @@
         if (formToShowIndex == 'interest-auto') {
             var modelID = $this.closest('.model').find('.model__id').text();
             $formToShow.find('.form__input_modelId').prop('value', modelID);
-            console.log($('.form__input_modelId').val());
         }
         $formToShow.one(animationEnd, function() {
             $(this).removeClass(fadeInAnimation);
         });
 
-        $('.form__close').on('click', function(event) {
+        $('.closeForm').on('click', function(event) {
             event.preventDefault();
             $formToShow.addClass('animated fadeOutUp');
             $layout.fadeOut();
@@ -119,10 +158,34 @@
         $('.filters').find('input[type="checkbox"]').prop('checked', false);
     });
 
+    $('.showFilter').on('click', function(event) {
+        event.preventDefault();
+        $(this).toggleClass('show-filters_active').parent().next('.filter').slideToggle(500);
+    });
+
+
+    // табы по порядковому номеру
+    $('.tabs__nav-link').on('click', function(e) {
+        e.preventDefault();
+        var
+            $this = $(this),
+            $item = $this.closest(".tabs__nav-item"),
+            activeNavLink = 'tabs__nav-link_active',
+            $contentItem = $(".tabs__item"),
+            itemIndex = $item.data('tab');
+        if ((!$this.hasClass(activeNavLink))) {
+            $this.addClass(activeNavLink)
+                .parent().siblings().find('.tabs__nav-link')
+                .removeClass(activeNavLink)
+        }
+        $contentItem.filter('.tabs__item-' + itemIndex)
+            .addClass("tabs__item_active")
+            .siblings().removeClass('tabs__item_active');
+    });
 
 
     //form
-    $("#interest-auto-form,#request-call-form").validationEngine('attach', {
+    $("#test-drive-form,#request-call-form,#request-call-form2").validationEngine('attach', {
         //отображение стрелки возле подсказки
         showArrow: false,
         //отображение стрелки возле подсказоки радио и чекбокс
@@ -156,10 +219,9 @@
                         console.log("Всегда");
                     });
             } else {
-                console.log(form);
                 $(".formErrorContent br").remove();
-                form.addClass("animated shake");
-                form.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+                form.closest(".form").addClass("animated shake");
+                form.closest(".form").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
                     $(this).removeClass("animated shake"); //убираем класс после окончания анимации
                 });
             }

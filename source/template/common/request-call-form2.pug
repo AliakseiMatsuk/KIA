@@ -1,0 +1,11 @@
+form(method="POST" id="request-call-form2")
+	ul.form-list
+		li.form-list__item
+			label.form__label(for="request-call1") Ваше имя
+				span.star  *
+			input.form__input(type="text", id="request-call1" class="validate[required]")
+		li.form-list__item
+			label.form__label(for="request-call2") Контактный телефон
+				span.star  *
+			input.form__input(type="text", id="request-call2" class="validate[required] phone")
+	input.form__submit.request-call__form-submit(type="submit", value="Отправить", id="request-call-form")

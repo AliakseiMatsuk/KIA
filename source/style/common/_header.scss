@@ -7,14 +7,40 @@
     margin:0;
     background-image: url(../images/main-price-bg.png);
     background-position: 0px 0px;
+    background-repeat: no-repeat;
     width: 436px;
     height: 209px;
+    @media (max-width: 1200px){
+         max-width: 300px;
+        margin-bottom: -35px;
+        background-size: contain; 
+    }
+    @media (max-width: 767px){
+         max-width: 200px;
+        margin-bottom: -80px;
+    }
+    @media (max-width: 480px){
+         max-width: 120px;
+        margin-bottom: -115px;
+    }
     &__price {
         position: absolute;
         color: $headerTitleColor;
         font-weight: 700;
         font-size: 3.75rem;
         margin-top: 10px;
+        @media (max-width: 1200px){
+            font-size: 2.5rem;
+            margin-top: -10px;
+        }
+        @media (max-width: 767px){
+            font-size: 2rem;
+            margin-top: -35px;
+        }
+        @media (max-width: 480px){
+            font-size: 1rem;
+            margin-top: -55px;
+        }
         &:after{
         	content: ' руб'
         }
@@ -42,13 +68,30 @@
         font-size: 4rem;
         font-weight: 700;
         padding: 0.75em 0 0.33em 0;
+        @media (max-width: 992px){
+        padding: 0.4em 0 0.2em 0;
+        }
+        @media (max-width: 767px){
+        padding: 0.3em 0 0.2em 0;
+        font-size: 3rem;
+        }
+        @media (max-width: 480px){
+        padding: 0.1em 0 0.2em 0;
+        font-size: 2rem;
+        }
     }
     &__subtitle {
         font-size: 2rem;
         font-weight: 400;
+        @media (max-width: 480px){
+        font-size: 1rem;
+        }
     }
     &__main-price {
     	margin-left: -10px;
+        @media (max-width: 480px){
+            float: right;
+        }
     }
     &__price-wrap{
         position: absolute;
