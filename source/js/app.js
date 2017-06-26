@@ -89,7 +89,7 @@
             else{
                 if (scrollTopPosition >= 250) {
                     showButton();
-                } 
+                }
                 else {
                     hideButton();
                 }
@@ -160,7 +160,8 @@
 
     $('.showFilter').on('click', function(event) {
         event.preventDefault();
-        $(this).toggleClass('show-filters_active').parent().next('.filter').slideToggle(500);
+        $(this).children('.show-filters').toggleClass('show-filters_active');
+        $(this).next('.filter').slideToggle(500);
     });
 
 
@@ -197,7 +198,7 @@
         //показывать ошибку только для первого поля
         showOneMessage: true,
         //фокус на первом поле
-        focusFirstField: true,
+        focusFirstField: false,
         //обновление позиции подсказки при резайзе окна
         autoPositionUpdate: false,
         onValidationComplete: function(form, status) { // Когда валидация включена и сканирование формы завершено

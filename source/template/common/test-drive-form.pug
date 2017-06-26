@@ -1,6 +1,7 @@
 form(method="POST" id="test-drive-form")
 	ul.form-list
-		input.form__input.form__input_modelId(type="hidden",)
+		li.form-list__item.form-list__item_hidden
+			input.form__input.form__input_modelId(type="hidden",)
 		li.form-list__item
 			label.form__label(for="interest-auto1") Ваше имя
 				span.star  *
@@ -15,11 +16,11 @@ form(method="POST" id="test-drive-form")
 		li.form-list__item
 			label.form__label(for="interest-auto4") Желаемый способ связи
 				span.star  *
-			select.select(class="validate[required]")
+			select.select(class="validate[required]" id="interest-auto4")
 				each option in contactTypeList
 					option(value=`${option}`) #{option}
 		li.form-list__item
 			label.form__label(for="interest-auto5") Удобное время и дата
-		input.form__input(type="text", id="interest-auto5")
+			input.form__input(type="text", id="interest-auto5")
 	p.agreement Нажав кнопку «Отправить», я даю согласие на обработку моих персональных данных и получение рекламы. С условиями обработки персональных данных и получения рекламы, изложенными на сайте ознакомлен и согласен.
 	input.form__submit(type="submit", value="Отправить")

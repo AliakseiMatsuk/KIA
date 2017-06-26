@@ -29,6 +29,6 @@ module.exports = {
         spriteImg: './source/sprite/**/*.+(png|gif|jpg|jpeg|PNG|JPG|JPEG)',
         spriteSvg: './source/sprite/**/*.svg'
     },
-    autoprefixerConfig: ['last 3 version', '> 1%', 'ie 8', 'ie 9', 'Opera 12.1']
+    autoprefixerConfig: ['last 1 version']
 };
 

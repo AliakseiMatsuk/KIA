@@ -15,6 +15,23 @@ $filtersBg:#f0f1f3;
 
 $dividerColor:#ccc;
 $oldPriceColor:#666;
+
+@mixin centered($axis: 'both') {
+  position: absolute;
+  @if $axis=='x' {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $axis=='y' {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @if $axis=='both' {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
 //sprite
 @import 'common/sprite-img';
 //checkbox
@@ -81,7 +98,6 @@ text-decoration: underline;
   40%{
   	transform: scale3d(1, 1, 1);
   }
-
   to {
     transform: scale3d(1, 1, 1);
   }
@@ -89,17 +105,14 @@ text-decoration: underline;
 
 @keyframes shake {
   from, to {
-    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
 
   10%, 50% {
-    -webkit-transform: translate3d(-5px, 0, 0);
     transform: translate3d(-5px, 0, 0);
   }
 
   30%, 70% {
-    -webkit-transform: translate3d(5px, 0, 0);
     transform: translate3d(5px, 0, 0);
   }
 
@@ -126,7 +139,7 @@ text-decoration: underline;
     transform: translate3d(0, -100%, 0);
   }
 }
-@keyframes fadeIn {
+ @keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -136,19 +149,18 @@ text-decoration: underline;
 
   }
 }
-@media(max-width: 768px) {
+
+@media(max-width: 998px) {
     @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 0.8;
-        }
+    from {
+        opacity: 0;
     }
-    .fadeIn:hover{
-        opacity: 1;
+    to {
+        opacity: .8;
     }
 }
+}
+
 
 .scroll-top {
     display: none;
@@ -157,7 +169,6 @@ text-decoration: underline;
   animation-name: fadeIn;
    display: block;
 }
-
 .fadeOutUp {
   animation-name: fadeOutUp;
 }
@@ -165,7 +176,6 @@ text-decoration: underline;
   animation-name: fadeInDown;
 }
 .shake {
-  -webkit-animation-name: shake;
   animation-name: shake;
 }
 .pulse {
@@ -182,9 +192,7 @@ text-decoration: underline;
 .animated.infinite {
   animation-iteration-count: infinite;
 }
-.close {
-    @include retina-sprite($close-group);
-}
+
 .agreement{
 	color:#999999;
 	font-size: 0.625rem;
@@ -239,82 +247,84 @@ body {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    &__link {
-        display: block;
-    }
     .btn{
    		padding-left: 35px;
     }
 }
 .btn {
     font-family: 'Open Sans', sans-serif;
+    font-size: 0.8125rem;
+    color: $buttonDefaultColor;
     background-color: $buttonDefaultBg;
     transition: all .3s;
     border: none;
     cursor: pointer;
     outline: none;
-    color: $buttonDefaultColor;
-    font-size: 0.8125rem;
+    text-decoration: none;
     min-height: 40px;
+    line-height: 40px;
     width: 100%;
     max-width: 202px;
     position: relative;
-    @media(max-width: 480px){
+    display: inline-block;
+    text-align:center;
+    @media(max-width: 480px) {
         max-width: 100%;
     }
     &:hover,
-    &:visited,
     &:active {
         background-color: $buttonDefaultBgHover;
-        opacity: .9;
-        &:before{
-        	opacity: .9;
+    }
+    &.clear {
+        padding-left: 35px;
+        &.btn {
+            max-width: 100%;
         }
     }
-    &:before{
-    	content:'';
-    	display: inline-block;
-    	position: absolute;
-    	left: 1.8em;
-    	transition:all .3s;
-    }
-    &.interest{
-    	&:before{
-    		 @include retina-sprite($interest-group);
-    	}
-
-    }
-    &.payment{
-    	&:before{
-    		 @include retina-sprite($payment-group);
-    	}
-
-    }
-    &.traidin{
-    	&:before{
-    		 @include retina-sprite($traidin-group);
-    	}
-}
-	&.clear{
-		padding-left: 35px;
-    &.btn{
-        max-width:100%;
-    }
-		&:before{
-			 @include retina-sprite($clear-group);
-			top: 1.1em;
-		}
-	}
     &_color {
         background-color: $buttonColorBg;
         color: $buttonColorColor;
         &:hover,
-        &:visited,
         &:active {
             background-color: $buttonColorBgHover;
         }
     }
+
+    &__icon{
+        position:absolute;
+        left:1.8em;
+        @include centered(y);
+    }
 }
+    .payment-icon {
+        width:17px;
+        height:14px;
+        fill: #000;
+    }
+
+    .traidin-icon {
+        width: 16px;
+        height: 16px;
+        fill: #000;
+    }
+
+    .interest-icon {
+        width: 17px;
+        height: 18px;
+        fill: #fff;
+    }
+.clear-icon {
+    width: 12px;
+    height: 12px;
+    fill: #000;
+}
+
+.close-icon {
+    width: 13px;
+    height: 13px;
+    fill: #ababab;
+}
+
 
 .btn-block {
     &__item:not(:last-child) {
@@ -335,16 +345,20 @@ body {
     display: none;
     position: absolute;
     right: 0;
-    @include retina-sprite($arrow-group);
-    width: 18px;
-    height: 18px;
-    transform:rotate(-90deg);
+    width: 16px;
+    height: 16px;
+    transform:rotate(180deg);
     cursor:pointer;
     transition:all .4s;
-    opacity: .7;
+    opacity: .8;
     &_active{
-        transform:rotate(-270deg);
+        transform:rotate(0deg);
         opacity: 1;
+    }
+    &__icon{
+        max-width: 100%;
+        max-height: 100%;
+        fill:$priceDiscountColor;
     }
     @media(max-width: 480px) {
         display: inline-block;
@@ -382,7 +396,6 @@ body {
         margin: 0px;
         font-weight: 600;
         position: relative;
-        min-height: 24px;
     }
 }
 
@@ -390,6 +403,10 @@ body {
     margin: 0;
     padding: 20px 0 0;
     list-style-type: none;
+    display:block;
+    @media(min-width: 481px) {
+    display:block !important;
+    }
     @media(max-width: 480px) {
         display: none;
     }
@@ -525,6 +542,9 @@ body {
         &:not(:last-child) {
          margin-bottom: .65em;
         }
+        &_hidden{
+            display:none;
+        }
     }
     &__val {
     	max-width: 155px;
@@ -591,6 +611,12 @@ body {
             margin-bottom: 30px;
         }
     }
+    &__icon{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .scroll-top,
@@ -602,32 +628,23 @@ body {
     background: #d9dadc linear-gradient(45deg, rgba(228, 229, 230, 0) 0%, #ffffff 100%);
     transition: all.5s;
     position: relative;
-    @media(max-width: 1500px) {
-       // opacity: .7;
-    }
     @media(max-width: 768px) {
         width: 50px;
         height: 50px;
-        opacity: .7;
+        opacity: .8;
     }
     &:hover {
         box-shadow: 0px 0px 12px -2px rgba(171, 171, 171, 1);
          opacity: 1;
     }
-    &:before {
-        content: '';
-        display: block;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
 }
 
 
 .scroll-top {
-    &:before {
-        @include retina-sprite($up-group);
+    &__icon{
+        fill:#000;
+        width:26px;
+        height:24px;
     }
 }
 
@@ -636,8 +653,10 @@ body {
     &:hover {
         box-shadow: 2px 3px 15px 0px rgba(171, 171, 171, 1);
     }
-    &:before {
-        @include retina-sprite($phone-group);
+    &__icon{
+        width:31px;
+        height:31px;
+        fill:$priceDiscountColor;
     }
 }
 
@@ -831,6 +850,9 @@ body {
     	position: relative;
         &:not(:last-child) {
             margin-bottom: 17px;
+        }
+        &_hidden{
+            display: none;
         }
     }
 }

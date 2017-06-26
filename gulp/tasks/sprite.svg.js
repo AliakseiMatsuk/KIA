@@ -24,6 +24,6 @@ module.exports = function() {
                     }
                 }
             }))
-            .pipe($.gulp.dest($.config.build.css))
+            .pipe($.gulp.dest($.config.build.img))
     })
 };

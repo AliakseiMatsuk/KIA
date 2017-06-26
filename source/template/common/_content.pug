@@ -6,8 +6,10 @@ section.content
 					.filters
 						p.filters__title Фильтры
 						section.filter__section.filter-section
-							p.filter-section__title Двигатель
-								span.show-filters.showFilter
+							h4.filter-section__title.showFilter Двигатель
+								span.show-filters
+									svg.show-filters__icon
+										use(xlink:href="templates/_ares/images/sprite.svg#arrow")
 							ul.filter
 								each item,index in engineFilter
 									li.filter__item
@@ -17,8 +19,10 @@ section.content
 											span.custom-check__checkbox.check-B__checkbox
 											span.custom-check__text #{item}
 						section.filter__section.filter-section
-							p.filter-section__title Привод
-								span.show-filters.showFilter
+							h4.filter-section__title.showFilter Привод
+								span.show-filters
+									svg.show-filters__icon
+										use(xlink:href="templates/_ares/images/sprite.svg#arrow")
 							ul.filter
 								each item,index in driveFilter
 									li.filter__item
@@ -28,8 +32,10 @@ section.content
 											span.custom-check__checkbox.check-B__checkbox
 											span.custom-check__text #{item}
 						section.filter__section.filter-section
-							p.filter-section__title Коробка передач
-								span.show-filters.showFilter
+							h4.filter-section__title.showFilter Коробка передач
+								span.show-filters
+									svg.show-filters__icon
+										use(xlink:href="templates/_ares/images/sprite.svg#arrow")
 							ul.filter
 								each item,index in gearFilter
 									li.filter__item
@@ -39,8 +45,10 @@ section.content
 											span.custom-check__checkbox.check-B__checkbox
 											span.custom-check__text #{item}
 						section.filter__section.filter-section
-							p.filter-section__title Местонахождение
-								span.show-filters.showFilter
+							h4.filter-section__title.showFilter Местонахождение
+								span.show-filters
+									svg.show-filters__icon
+										use(xlink:href="templates/_ares/images/sprite.svg#arrow")
 							ul.filter
 								each item,index in positionFilter
 									li.filter__item
@@ -50,8 +58,9 @@ section.content
 											span.custom-check__checkbox.check-B__checkbox
 											span.custom-check__text #{item}
 					.clear-filters.filters__clear-filters
-						a(href="#" title="Сбросить фильтры")
-							button.btn.clear Сбросить фильтры
+						a.btn.clear(href="javascript:void(0);" title="Сбросить фильтры") Сбросить фильтры
+							svg.clear-icon.btn__icon
+								use(xlink:href="templates/_ares/images/sprite.svg#close")
 			.col-lg-10.col-md-9.col-sm-9.col-xs-12
 				main.main
 					each item in cars
@@ -70,7 +79,8 @@ section.content
 										else
 											p.model__price #{item.modelPrice}
 										ul.model__params.params
-											span.model__id #{item.modelId}
+											li.params__item.params__item_hidden
+												span.model__id #{item.modelId}
 											li.params__item
 												span.params__name Тип кузова:
 												span.params__val #{item.bodyType}
@@ -98,5 +108,4 @@ section.content
 									.model__buttons
 										+buttons
 				.show-more
-					a(href="#" title="Показать еще")
-						button.btn Показать еще
+					a.btn(href="#" title="Показать еще") Показать еще

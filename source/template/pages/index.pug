@@ -10,7 +10,7 @@ block variables
 	- var gearFilter = ['Автомат', 'Механика']
 	- var positionFilter = ['На складе', 'В пути']
 	- var buttons = ['Интересует это авто', 'Купить в рассрочку', 'Система Trade-In']
-	- var contactTypeList = ['', 'По телефону', 'Сообщение в Вайбере', 'По электронной почте']
+	- var contactTypeList = ['По телефону', 'Сообщение в Вайбере', 'По электронной почте']
 	-
 		var cars = [
 			{
@@ -80,28 +80,41 @@ block variables
 		ul.btn-block.btn-group
 			each item in buttons
 				li.btn-block__item
-					a(href="#").btn-group__link
 						case item
 							when "Интересует это авто"
-								button.btn.btn_color.interest.showForm(data-form="interest-auto") #{item}
+								a(href="javascript:void(0);" data-form="interest-auto").btn-group__link.btn.btn_color.interest.showForm #{item}
+									svg.interest-icon.btn__icon
+										use(xlink:href="templates/_ares/images/sprite.svg#interest")
 							when "Купить в рассрочку"
-								button.btn.payment #{item}
+								a(href="#").btn-group__link.btn #{item}
+									svg.payment-icon.btn__icon
+										use(xlink:href="templates/_ares/images/sprite.svg#shopping-cart")
 							when "Система Trade-In"
-								button.btn.traidin #{item}
+								a(href="#").btn-group__link.btn #{item}
+									svg.traidin-icon.btn__icon
+										use(xlink:href="templates/_ares/images/sprite.svg#traidin")
 block content
 	div.btn-round
 		.btn-round__item.scroll-top(data-href=".header")
+			svg.btn-round__icon.scroll-top__icon
+				use(xlink:href="templates/_ares/images/sprite.svg#up")
 		.btn-round__item.btn-call.animated.infinite.pulse.showForm(data-form="request-call")
+			svg.btn-round__icon.btn-call__icon
+				use(xlink:href="templates/_ares/images/sprite.svg#phone")
 	.layout
 		.forms-wrapper
 			.request-call
 				.form
 					.close.form__close.closeForm
+						svg.close-icon
+							use(xlink:href="templates/_ares/images/sprite.svg#close")
 					.color-title.form__title Заказать звонок
 					include ../common/request-call-form
 			.interest-auto
 				.form
 					.close.form__close.closeForm
+						svg.close-icon
+							use(xlink:href="templates/_ares/images/sprite.svg#close")
 					.color-title.form__title Интересует это авто
 					.form__tabs.tabs
 						ul.tabs__nav
